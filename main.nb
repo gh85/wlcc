@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[      3274,         90]
-NotebookOptionsPosition[      2814,         75]
-NotebookOutlinePosition[      3225,         91]
-CellTagsIndexPosition[      3182,         88]
+NotebookDataLength[      7136,        178]
+NotebookOptionsPosition[      6048,        153]
+NotebookOutlinePosition[      6459,        169]
+CellTagsIndexPosition[      6416,        166]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -71,10 +71,88 @@ Cell[BoxData[""], "Input",
  CellChangeTimes->{{3.9830663100253315`*^9, 3.9830663385569973`*^9}, {
    3.983066532005724*^9, 3.983066535318386*^9}, 
    3.983066569812149*^9},ExpressionUUID->"5f12725d-1741-7449-a308-\
-58280f338edf"]
+58280f338edf"],
+
+Cell[BoxData[
+ RowBox[{"Main", "[", 
+  RowBox[{"2", ",", "\"\<main.s\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.983067065058468*^9, 3.983067078622446*^9}, {
+  3.983069440774988*^9, 3.9830694451879463`*^9}},
+ CellLabel->"In[70]:=",ExpressionUUID->"fcc68275-a981-4a45-86ab-9763a4e8d51b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"RunProcess", "[", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{"\"\<gcc\>\"", ",", "\[IndentingNewLine]", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<main.s\>\""}], 
+      "}"}], "]"}], ",", "\[IndentingNewLine]", "\"\<-o\>\"", ",", 
+    RowBox[{"FileNameJoin", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<main\>\""}], "}"}], 
+     "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.983067349198902*^9, 3.983067411303877*^9}, {
+  3.9830674971734905`*^9, 3.983067498696596*^9}, {3.98306755631538*^9, 
+  3.9830675958761425`*^9}, {3.9830678736603966`*^9, 3.98306787914184*^9}, {
+  3.983069245846489*^9, 3.9830692795011997`*^9}, {3.983069353155285*^9, 
+  3.983069353672821*^9}},
+ CellLabel->"In[71]:=",ExpressionUUID->"ba161667-7299-b94e-aa7e-13ec0fb92890"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"ExitCode\"\>", "\[Rule]", "0"}], ",", 
+   RowBox[{"\<\"StandardOutput\"\>", "\[Rule]", "\<\"\"\>"}], ",", 
+   RowBox[{"\<\"StandardError\"\>", "\[Rule]", "\<\"\"\>"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{{3.9830673468454456`*^9, 3.98306735046859*^9}, {
+   3.9830673877297173`*^9, 3.983067412466564*^9}, 3.98306749936499*^9, 
+   3.9830675965153675`*^9, 3.983067879990488*^9, {3.983069232213375*^9, 
+   3.983069264905239*^9}, 3.9830693030540695`*^9, 3.983069358232647*^9, 
+   3.9830694733374176`*^9},
+ CellLabel->"Out[71]=",ExpressionUUID->"e168029d-d4fb-4340-8a28-69f401bd9497"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"RunProcess", "[", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<main\>\""}], "}"}], 
+    "]"}], "\[IndentingNewLine]", "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.983068376367111*^9, 3.983068396375164*^9}, {
+  3.983068689469633*^9, 3.9830686933967705`*^9}, {3.9830687714852467`*^9, 
+  3.9830687753957424`*^9}, {3.983068879218727*^9, 3.983068898819725*^9}, {
+  3.9830693288998184`*^9, 3.9830693563473854`*^9}},
+ CellLabel->"In[72]:=",ExpressionUUID->"c4b60bf9-bd13-8a42-9f32-0b8adeb2512d"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"ExitCode\"\>", "\[Rule]", "2"}], ",", 
+   RowBox[{"\<\"StandardOutput\"\>", "\[Rule]", "\<\"\"\>"}], ",", 
+   RowBox[{"\<\"StandardError\"\>", "\[Rule]", "\<\"\"\>"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{{3.9830693332301655`*^9, 3.983069360939825*^9}, 
+   3.9830694760267735`*^9},
+ CellLabel->"Out[72]=",ExpressionUUID->"687dc3a6-7924-804b-8aa0-c0e8db0174eb"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.983068074367775*^9, 
+  3.983068074369787*^9}},ExpressionUUID->"8910ad44-8dc5-b04e-9910-\
+ad4ba5f8dd9c"]
 },
-WindowSize->{581.25, 450.75},
-WindowMargins->{{215.25, Automatic}, {Automatic, 40.5}},
+WindowSize->{579.75, 450.75},
+WindowMargins->{{Automatic, 135.75}, {28.5, Automatic}},
 FrontEndVersion->"14.2 for Microsoft Windows (64-bit) (March 14, 2025)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"56fa71c5-6708-ea44-bbba-4863e9380267"
@@ -90,8 +168,18 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 2024, 47, 320, "Input",ExpressionUUID->"5b81382e-a349-a04e-873a-cf1e72f74056"],
-Cell[2581, 69, 229, 4, 28, "Input",ExpressionUUID->"5f12725d-1741-7449-a308-58280f338edf"]
+Cell[554, 20, 2024, 47, 294, "Input",ExpressionUUID->"5b81382e-a349-a04e-873a-cf1e72f74056"],
+Cell[2581, 69, 229, 4, 28, "Input",ExpressionUUID->"5f12725d-1741-7449-a308-58280f338edf"],
+Cell[2813, 75, 289, 5, 28, "Input",ExpressionUUID->"fcc68275-a981-4a45-86ab-9763a4e8d51b"],
+Cell[CellGroupData[{
+Cell[3127, 84, 947, 19, 104, "Input",ExpressionUUID->"ba161667-7299-b94e-aa7e-13ec0fb92890"],
+Cell[4077, 105, 674, 12, 32, "Output",ExpressionUUID->"e168029d-d4fb-4340-8a28-69f401bd9497"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4788, 122, 630, 12, 66, "Input",ExpressionUUID->"c4b60bf9-bd13-8a42-9f32-0b8adeb2512d"],
+Cell[5421, 136, 456, 9, 32, "Output",ExpressionUUID->"687dc3a6-7924-804b-8aa0-c0e8db0174eb"]
+}, Open  ]],
+Cell[5892, 148, 152, 3, 28, "Input",ExpressionUUID->"8910ad44-8dc5-b04e-9910-ad4ba5f8dd9c"]
 }
 ]
 *)
