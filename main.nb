@@ -10,39 +10,68 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[      1967,         60]
-NotebookOptionsPosition[      1599,         46]
-NotebookOutlinePosition[      2010,         62]
-CellTagsIndexPosition[      1967,         59]
+NotebookDataLength[      3274,         90]
+NotebookOptionsPosition[      2814,         75]
+NotebookOutlinePosition[      3225,         91]
+CellTagsIndexPosition[      3182,         88]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[BoxData[
  RowBox[{
-  RowBox[{
-   RowBox[{"doCodeEmission", "[", "n_", "]"}], ":=", 
-   RowBox[{"Block", "[", 
+  RowBox[{"Main", "[", 
+   RowBox[{"arg_", ",", "filename_"}], "]"}], ":=", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"doCodeEmission", ",", "f"}], "}"}], ",", "\[IndentingNewLine]", 
     RowBox[{
-     RowBox[{"{", "asm", "}"}], ",", "\[IndentingNewLine]", 
      RowBox[{
-      RowBox[{"asm", "=", "\"\<\>\""}], ";", "\[IndentingNewLine]", 
-      RowBox[{"asm", "=", 
-       RowBox[{"asm", "<>", "\"\<.intel_syntax noprefix\\n\>\""}]}], ";", 
-      RowBox[{"asm", "=", 
-       RowBox[{"asm", "<>", "\"\<.globl main\\n\>\""}]}], ";", 
-      RowBox[{"asm", "=", 
-       RowBox[{"asm", "<>", "\"\<main:\\n\>\""}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"asm", "=", 
-       RowBox[{"asm", "<>", "\"\<\\tmov rax, \>\"", "<>", 
-        RowBox[{"ToString", "[", "n", "]"}], "<>", "\"\<\\n\>\""}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"asm", "=", 
-       RowBox[{"asm", "<>", "\"\<\\tret\\n\>\""}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"Return", "[", "asm", "]"}]}]}], "\[IndentingNewLine]", "]"}]}],
-   ";"}]], "Input",ExpressionUUID->"5b81382e-a349-a04e-873a-cf1e72f74056"]
+      RowBox[{"doCodeEmission", "[", "n_", "]"}], ":=", 
+      RowBox[{"Block", "[", 
+       RowBox[{
+        RowBox[{"{", "asm", "}"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"asm", "=", "\"\<\>\""}], ";", "\[IndentingNewLine]", 
+         RowBox[{"asm", "=", 
+          RowBox[{"asm", "<>", "\"\<.intel_syntax noprefix\\n\>\""}]}], ";", 
+         RowBox[{"asm", "=", 
+          RowBox[{"asm", "<>", "\"\<.globl main\\n\>\""}]}], ";", 
+         RowBox[{"asm", "=", 
+          RowBox[{"asm", "<>", "\"\<main:\\n\>\""}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"asm", "=", 
+          RowBox[{"asm", "<>", "\"\<\\tmov rax, \>\"", "<>", 
+           RowBox[{"ToString", "[", "n", "]"}], "<>", "\"\<\\n\>\""}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"asm", "=", 
+          RowBox[{"asm", "<>", "\"\<\\tret\\n\>\""}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Return", "[", "asm", "]"}]}]}], "\[IndentingNewLine]", 
+       "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"f", "=", 
+      RowBox[{"OpenWrite", "[", 
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"NotebookDirectory", "[", "]"}], ",", "filename"}], "}"}], 
+        "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"WriteString", "[", 
+      RowBox[{"f", ",", 
+       RowBox[{"doCodeEmission", "[", "arg", "]"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Close", "[", "f", "]"}], ";"}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.983066431936922*^9, 3.983066468946415*^9}, {
+  3.983066696694908*^9, 3.983066777693815*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"5b81382e-a349-a04e-873a-cf1e72f74056"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.9830663100253315`*^9, 3.9830663385569973`*^9}, {
+   3.983066532005724*^9, 3.983066535318386*^9}, 
+   3.983066569812149*^9},ExpressionUUID->"5f12725d-1741-7449-a308-\
+58280f338edf"]
 },
 WindowSize->{581.25, 450.75},
 WindowMargins->{{215.25, Automatic}, {Automatic, 40.5}},
@@ -61,10 +90,9 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 1041, 24, 180, "Input",ExpressionUUID->"5b81382e-a349-a04e-873a-cf1e72f74056"]
+Cell[554, 20, 2024, 47, 320, "Input",ExpressionUUID->"5b81382e-a349-a04e-873a-cf1e72f74056"],
+Cell[2581, 69, 229, 4, 28, "Input",ExpressionUUID->"5f12725d-1741-7449-a308-58280f338edf"]
 }
 ]
 *)
-
-(* End of internal cache information *)
 
