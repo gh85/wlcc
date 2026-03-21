@@ -10,14 +10,42 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[      7136,        178]
-NotebookOptionsPosition[      6048,        153]
-NotebookOutlinePosition[      6459,        169]
-CellTagsIndexPosition[      6416,        166]
+NotebookDataLength[      8515,        219]
+NotebookOptionsPosition[      7707,        197]
+NotebookOutlinePosition[      8114,        213]
+CellTagsIndexPosition[      8071,        210]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
+Cell[TextData[{
+ "[C] \t",
+ ButtonBox["Commit f722aa",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/rui314/chibicc/commit/\
+f722daaaae0606115df4ace5a852da23c1a5b0f3"], None},
+  ButtonNote->
+   "https://github.com/rui314/chibicc/commit/\
+f722daaaae0606115df4ace5a852da23c1a5b0f3"],
+ "\n[Go]\t",
+ ButtonBox["Commit d8c66dd",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://github.com/KoyamaSohei/chibicc/commit/\
+d8c66dd5bcb3a5abec873c8aeb52393d21e0910b"], None},
+  ButtonNote->
+   "https://github.com/KoyamaSohei/chibicc/commit/\
+d8c66dd5bcb3a5abec873c8aeb52393d21e0910b"],
+ "\n\n"
+}], "Subtitle",
+ CellChangeTimes->{{3.9830717547234306`*^9, 3.9830717978713837`*^9}, {
+  3.9830719199635067`*^9, 3.983071921045273*^9}, {3.9830719524707756`*^9, 
+  3.9830720230030537`*^9}},ExpressionUUID->"61b0b2ff-bb74-a943-bf90-\
+2453bcb23e37"],
+
 Cell[BoxData[
  RowBox[{
   RowBox[{"Main", "[", 
@@ -67,92 +95,108 @@ Cell[BoxData[
   3.983066696694908*^9, 3.983066777693815*^9}},
  CellLabel->"In[11]:=",ExpressionUUID->"5b81382e-a349-a04e-873a-cf1e72f74056"],
 
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.9830663100253315`*^9, 3.9830663385569973`*^9}, {
-   3.983066532005724*^9, 3.983066535318386*^9}, 
-   3.983066569812149*^9},ExpressionUUID->"5f12725d-1741-7449-a308-\
-58280f338edf"],
-
 Cell[BoxData[
- RowBox[{"Main", "[", 
-  RowBox[{"2", ",", "\"\<main.s\>\""}], "]"}]], "Input",
- CellChangeTimes->{{3.983067065058468*^9, 3.983067078622446*^9}, {
-  3.983069440774988*^9, 3.9830694451879463`*^9}},
- CellLabel->"In[70]:=",ExpressionUUID->"fcc68275-a981-4a45-86ab-9763a4e8d51b"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"RunProcess", "[", 
-  RowBox[{"{", "\[IndentingNewLine]", 
-   RowBox[{"\"\<gcc\>\"", ",", "\[IndentingNewLine]", 
-    RowBox[{"FileNameJoin", "[", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Test", "[", "arg_", "]"}], ":=", 
+   RowBox[{"Block", "[", 
+    RowBox[{
      RowBox[{"{", 
-      RowBox[{
-       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<main.s\>\""}], 
-      "}"}], "]"}], ",", "\[IndentingNewLine]", "\"\<-o\>\"", ",", 
-    RowBox[{"FileNameJoin", "[", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<main\>\""}], "}"}], 
-     "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]], "Input",
+      RowBox[{"compileASM", ",", "Test"}], "}"}], ",", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Main", "[", 
+       RowBox[{"arg", ",", "\"\<main.s\>\""}], "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"compileASM", "=", 
+       RowBox[{"RunProcess", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{"\"\<gcc\>\"", ",", "\[IndentingNewLine]", 
+          RowBox[{"FileNameJoin", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<main.s\>\""}],
+             "}"}], "]"}], ",", "\[IndentingNewLine]", "\"\<-o\>\"", ",", 
+          RowBox[{"FileNameJoin", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<main\>\""}], 
+            "}"}], "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"compileASM", "[", "\"\<ExitCode\>\"", "]"}], "!=", "0"}], ",",
+         "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Print", "[", 
+          RowBox[{"compileASM", "[", "\"\<StandardError\>\"", "]"}], "]"}], ";", 
+         RowBox[{"Abort", "[", "]"}]}]}], "\[IndentingNewLine]", "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Test", "=", 
+       RowBox[{"RunProcess", "[", 
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"NotebookDirectory", "[", "]"}], 
+            ",", "\"\<main.exe\>\""}], "}"}], "]"}], "\[IndentingNewLine]", 
+         "}"}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Test", "[", "\"\<ExitCode\>\"", "]"}], "!=", "arg"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"Test", "[", "\"\<StandardError\>\"", "]"}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", 
+         RowBox[{"\"\<Test Pass with :\>\"", ",", 
+          RowBox[{"Test", "[", "\"\<ExitCode\>\"", "]"}]}], "]"}]}], 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"DeleteFile", "[", "\[IndentingNewLine]", 
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<main.exe\>\""}], 
+         "}"}], "]"}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+  "\[IndentingNewLine]"}]], "Input",
  CellChangeTimes->{{3.983067349198902*^9, 3.983067411303877*^9}, {
   3.9830674971734905`*^9, 3.983067498696596*^9}, {3.98306755631538*^9, 
   3.9830675958761425`*^9}, {3.9830678736603966`*^9, 3.98306787914184*^9}, {
   3.983069245846489*^9, 3.9830692795011997`*^9}, {3.983069353155285*^9, 
-  3.983069353672821*^9}},
- CellLabel->"In[71]:=",ExpressionUUID->"ba161667-7299-b94e-aa7e-13ec0fb92890"],
-
-Cell[BoxData[
- RowBox[{"\[LeftAssociation]", 
-  RowBox[{
-   RowBox[{"\<\"ExitCode\"\>", "\[Rule]", "0"}], ",", 
-   RowBox[{"\<\"StandardOutput\"\>", "\[Rule]", "\<\"\"\>"}], ",", 
-   RowBox[{"\<\"StandardError\"\>", "\[Rule]", "\<\"\"\>"}]}], 
-  "\[RightAssociation]"}]], "Output",
- CellChangeTimes->{{3.9830673468454456`*^9, 3.98306735046859*^9}, {
-   3.9830673877297173`*^9, 3.983067412466564*^9}, 3.98306749936499*^9, 
-   3.9830675965153675`*^9, 3.983067879990488*^9, {3.983069232213375*^9, 
-   3.983069264905239*^9}, 3.9830693030540695`*^9, 3.983069358232647*^9, 
-   3.9830694733374176`*^9},
- CellLabel->"Out[71]=",ExpressionUUID->"e168029d-d4fb-4340-8a28-69f401bd9497"]
-}, Open  ]],
+  3.983069353672821*^9}, {3.9830707029738026`*^9, 3.9830707753669815`*^9}, {
+  3.9830708062761936`*^9, 3.9830709386071396`*^9}, {3.983070979497654*^9, 
+  3.983070987035015*^9}, {3.983071036766592*^9, 3.9830710832788353`*^9}, {
+  3.9830712185115585`*^9, 3.983071617606001*^9}, {3.9830716499536095`*^9, 
+  3.983071661913849*^9}},ExpressionUUID->"ba161667-7299-b94e-aa7e-\
+13ec0fb92890"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"RunProcess", "[", 
-  RowBox[{"{", "\[IndentingNewLine]", 
-   RowBox[{"FileNameJoin", "[", 
-    RowBox[{"{", 
-     RowBox[{
-      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<main\>\""}], "}"}], 
-    "]"}], "\[IndentingNewLine]", "}"}], "]"}]], "Input",
- CellChangeTimes->{{3.983068376367111*^9, 3.983068396375164*^9}, {
-  3.983068689469633*^9, 3.9830686933967705`*^9}, {3.9830687714852467`*^9, 
-  3.9830687753957424`*^9}, {3.983068879218727*^9, 3.983068898819725*^9}, {
-  3.9830693288998184`*^9, 3.9830693563473854`*^9}},
- CellLabel->"In[72]:=",ExpressionUUID->"c4b60bf9-bd13-8a42-9f32-0b8adeb2512d"],
+ RowBox[{"Test", "[", "55", "]"}]], "Input",
+ CellChangeTimes->{{3.983071096962433*^9, 3.9830711688590183`*^9}, 
+   3.9830712155520306`*^9, {3.98307162283939*^9, 3.983071625528883*^9}, {
+   3.983071674480177*^9, 3.983071676587719*^9}},
+ CellLabel->
+  "In[111]:=",ExpressionUUID->"541d9248-0733-f843-a610-0a1a8c9e2a98"],
 
 Cell[BoxData[
- RowBox[{"\[LeftAssociation]", 
-  RowBox[{
-   RowBox[{"\<\"ExitCode\"\>", "\[Rule]", "2"}], ",", 
-   RowBox[{"\<\"StandardOutput\"\>", "\[Rule]", "\<\"\"\>"}], ",", 
-   RowBox[{"\<\"StandardError\"\>", "\[Rule]", "\<\"\"\>"}]}], 
-  "\[RightAssociation]"}]], "Output",
- CellChangeTimes->{{3.9830693332301655`*^9, 3.983069360939825*^9}, 
-   3.9830694760267735`*^9},
- CellLabel->"Out[72]=",ExpressionUUID->"687dc3a6-7924-804b-8aa0-c0e8db0174eb"]
-}, Open  ]],
-
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.983068074367775*^9, 
-  3.983068074369787*^9}},ExpressionUUID->"8910ad44-8dc5-b04e-9910-\
-ad4ba5f8dd9c"]
+ InterpretationBox[
+  RowBox[{"\<\"Test Pass with :\"\>", "\[InvisibleSpace]", "55"}],
+  SequenceForm["Test Pass with :", 55],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9830716261427975`*^9, 3.983071677216934*^9},
+ CellLabel->
+  "During evaluation of \
+In[111]:=",ExpressionUUID->"55cdf87a-316f-9840-b855-e8746c1d5d84"]
+}, Open  ]]
+}, Open  ]]
 },
-WindowSize->{579.75, 450.75},
-WindowMargins->{{Automatic, 135.75}, {28.5, Automatic}},
+WindowSize->{571.5, 450.75},
+WindowMargins->{{Automatic, 144}, {28.5, Automatic}},
 FrontEndVersion->"14.2 for Microsoft Windows (64-bit) (March 14, 2025)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"56fa71c5-6708-ea44-bbba-4863e9380267"
@@ -168,18 +212,15 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[554, 20, 2024, 47, 294, "Input",ExpressionUUID->"5b81382e-a349-a04e-873a-cf1e72f74056"],
-Cell[2581, 69, 229, 4, 28, "Input",ExpressionUUID->"5f12725d-1741-7449-a308-58280f338edf"],
-Cell[2813, 75, 289, 5, 28, "Input",ExpressionUUID->"fcc68275-a981-4a45-86ab-9763a4e8d51b"],
 Cell[CellGroupData[{
-Cell[3127, 84, 947, 19, 104, "Input",ExpressionUUID->"ba161667-7299-b94e-aa7e-13ec0fb92890"],
-Cell[4077, 105, 674, 12, 32, "Output",ExpressionUUID->"e168029d-d4fb-4340-8a28-69f401bd9497"]
-}, Open  ]],
+Cell[576, 22, 863, 24, 145, "Subtitle",ExpressionUUID->"61b0b2ff-bb74-a943-bf90-2453bcb23e37"],
+Cell[1442, 48, 2024, 47, 294, "Input",ExpressionUUID->"5b81382e-a349-a04e-873a-cf1e72f74056"],
+Cell[3469, 97, 3508, 76, 541, "Input",ExpressionUUID->"ba161667-7299-b94e-aa7e-13ec0fb92890"],
 Cell[CellGroupData[{
-Cell[4788, 122, 630, 12, 66, "Input",ExpressionUUID->"c4b60bf9-bd13-8a42-9f32-0b8adeb2512d"],
-Cell[5421, 136, 456, 9, 32, "Output",ExpressionUUID->"687dc3a6-7924-804b-8aa0-c0e8db0174eb"]
-}, Open  ]],
-Cell[5892, 148, 152, 3, 28, "Input",ExpressionUUID->"8910ad44-8dc5-b04e-9910-ad4ba5f8dd9c"]
+Cell[7002, 177, 332, 6, 28, "Input",ExpressionUUID->"541d9248-0733-f843-a610-0a1a8c9e2a98"],
+Cell[7337, 185, 342, 8, 22, "Print",ExpressionUUID->"55cdf87a-316f-9840-b855-e8746c1d5d84"]
+}, Open  ]]
+}, Open  ]]
 }
 ]
 *)
