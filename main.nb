@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     30479,        755]
-NotebookOptionsPosition[     29535,        730]
-NotebookOutlinePosition[     29942,        746]
-CellTagsIndexPosition[     29899,        743]
+NotebookDataLength[     43462,       1063]
+NotebookOptionsPosition[     41361,       1016]
+NotebookOutlinePosition[     41765,       1032]
+CellTagsIndexPosition[     41722,       1029]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -82,7 +82,8 @@ Cell[BoxData[{
     RowBox[{"Association", "[", 
      RowBox[{"{", "\[IndentingNewLine]", 
       RowBox[{
-       RowBox[{"\"\<kind\>\"", "->", "kind"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"\"\<kind\>\"", "->", 
+        RowBox[{"TokenKind", "[", "kind", "]"}]}], ",", "\[IndentingNewLine]", 
        RowBox[{"\"\<str\>\"", "->", "str"}], ",", "\[IndentingNewLine]", 
        RowBox[{"\"\<val\>\"", "->", "val"}]}], "\[IndentingNewLine]", "}"}], 
      "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -149,7 +150,7 @@ tokenize\\n \
   RowBox[{
    RowBox[{
     RowBox[{"TokenizerAddNewToken", "[", 
-     RowBox[{"self_", ",", "TokenKind_", ",", 
+     RowBox[{"self_", ",", "Kind_", ",", 
       RowBox[{"int_", ":", "False"}]}], "]"}], ":=", 
     RowBox[{"Block", "[", 
      RowBox[{
@@ -158,7 +159,7 @@ tokenize\\n \
       RowBox[{
        RowBox[{"token", "=", 
         RowBox[{"Token", "[", "\[IndentingNewLine]", 
-         RowBox[{"TokenKind", ",", "\[IndentingNewLine]", 
+         RowBox[{"Kind", ",", "\[IndentingNewLine]", 
           RowBox[{"StringTake", "[", 
            RowBox[{
             RowBox[{"self", "[", "\"\<Source\>\"", "]"}], ",", 
@@ -168,7 +169,7 @@ tokenize\\n \
               RowBox[{
                RowBox[{"self", "[", "\"\<Current\>\"", "]"}], "-", "1"}]}], 
              "}"}]}], "]"}]}], "\[IndentingNewLine]", "]"}]}], ";", 
-       "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
        RowBox[{"If", "[", 
         RowBox[{"int", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
          RowBox[{
@@ -270,11 +271,10 @@ tokenize\\n \
            "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}], ";",
         "\[IndentingNewLine]", 
        RowBox[{"TokenizerAddNewToken", "[", 
-        RowBox[{"self", ",", 
-         RowBox[{"TokenKind", "[", "\"\<TK_NUM\>\"", "]"}], ",", "True"}], 
-        "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
+        RowBox[{"self", ",", "\"\<TK_NUM\>\"", ",", "True"}], "]"}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{"SetAttributes", "[", 
   RowBox[{"TokenizerTakeToken", ",", "HoldFirst"}], "]"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -305,15 +305,29 @@ tokenize\\n \
          "\[IndentingNewLine]", "\[IndentingNewLine]", 
          RowBox[{"ch", "==", "\"\<+\>\""}], " ", ",", "\[IndentingNewLine]", 
          RowBox[{"TokenizerAddNewToken", "[", 
-          RowBox[{"self", ",", 
-           RowBox[{"TokenKind", "[", "\"\<TK_RESERVED\>\"", "]"}]}], "]"}], ",",
-          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"self", ",", "\"\<TK_RESERVED\>\""}], "]"}], ",", 
+         "\[IndentingNewLine]", 
          RowBox[{"ch", "==", "\"\<-\>\""}], " ", ",", "\[IndentingNewLine]", 
          RowBox[{"TokenizerAddNewToken", "[", 
-          RowBox[{"self", ",", 
-           RowBox[{"TokenKind", "[", "\"\<TK_RESERVED\>\"", "]"}]}], "]"}], ",",
-          "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]",
-          "True", ",", "\[IndentingNewLine]", 
+          RowBox[{"self", ",", "\"\<TK_RESERVED\>\""}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"ch", "==", "\"\<*\>\""}], " ", ",", "\[IndentingNewLine]", 
+         RowBox[{"TokenizerAddNewToken", "[", 
+          RowBox[{"self", ",", "\"\<TK_RESERVED\>\""}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"ch", "==", "\"\</\>\""}], " ", ",", "\[IndentingNewLine]", 
+         RowBox[{"TokenizerAddNewToken", "[", 
+          RowBox[{"self", ",", "\"\<TK_RESERVED\>\""}], "]"}], ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"ch", "==", "\"\<(\>\""}], " ", ",", "\[IndentingNewLine]", 
+         RowBox[{"TokenizerAddNewToken", "[", 
+          RowBox[{"self", ",", "\"\<TK_RESERVED\>\""}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"ch", "==", "\"\<)\>\""}], " ", ",", "\[IndentingNewLine]", 
+         RowBox[{"TokenizerAddNewToken", "[", 
+          RowBox[{"self", ",", "\"\<TK_RESERVED\>\""}], "]"}], ",", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         "True", ",", "\[IndentingNewLine]", 
          RowBox[{"TokenizerError", "[", "ch", "]"}]}], "\[IndentingNewLine]", 
         "]"}]}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
@@ -321,415 +335,687 @@ tokenize\\n \
   RowBox[{"TokenizerTokenize", ",", "HoldFirst"}], "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
-   RowBox[{
-    RowBox[{"TokenizerTokenize", "[", "self_", "]"}], ":=", 
-    RowBox[{"Block", "[", 
+   RowBox[{"TokenizerTokenize", "[", "self_", "]"}], ":=", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", "ch", "}"}], ",", "\[IndentingNewLine]", 
      RowBox[{
-      RowBox[{"{", "ch", "}"}], ",", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"While", "[", 
-        RowBox[{
-         RowBox[{"Not", "[", 
-          RowBox[{"isAtEnd", "[", "self", "]"}], "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{
-          RowBox[{
-           RowBox[{"self", "[", "\"\<Start\>\"", "]"}], "=", 
-           RowBox[{"self", "[", "\"\<Current\>\"", "]"}]}], ";", 
-          "\[IndentingNewLine]", 
-          RowBox[{"TokenizerTakeToken", "[", "self", "]"}], ";"}]}], 
-        "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
-       RowBox[{"TokenizerAddNewToken", "[", 
-        RowBox[{"self", ",", 
-         RowBox[{"TokenKind", "[", "\"\<TK_EOF\>\"", "]"}]}], "]"}]}]}], 
-     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{
-   "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", 
-    "=="}], "*)"}], "\[IndentingNewLine]", 
-  RowBox[{"(*", 
-   RowBox[{"still", " ", "not", " ", "a", " ", "parser"}], "*)"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"Parser", "::", "err"}], "=", "\"\<It is not `1`\>\""}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"ParserError", "[", "ch_", "]"}], ":=", 
-    RowBox[{"Block", "[", 
-     RowBox[{
-      RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"Message", "[", 
-        RowBox[{
-         RowBox[{"Parser", "::", "err"}], ",", "ch"}], "]"}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{"Abort", "[", "]"}]}]}], "]"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"Parser", "[", "tokens_", "]"}], ":=", 
-    RowBox[{"Association", "[", 
-     RowBox[{"{", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"\"\<Tokens\>\"", "->", "tokens"}], ",", "\[IndentingNewLine]", 
-       RowBox[{"\"\<cur\>\"", " ", "->", "1"}]}], "\[IndentingNewLine]", 
-      "}"}], "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"SetAttributes", "[", 
-  RowBox[{"consume", ",", "HoldFirst"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"consume", "[", 
-     RowBox[{"self_", ",", " ", "op_"}], "]"}], ":=", 
-    RowBox[{"Block", "[", 
-     RowBox[{
-      RowBox[{"{", "token", "}"}], ",", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"token", "=", 
-        RowBox[{
-         RowBox[{"self", "[", "\"\<Tokens\>\"", "]"}], "[", 
-         RowBox[{"[", 
-          RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "]"}], "]"}]}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{"If", " ", "[", "\[IndentingNewLine]", 
-        RowBox[{
-         RowBox[{"Or", "[", "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"token", "[", "\"\<kind\>\"", "]"}], "!=", 
-            RowBox[{"TokenKind", "[", "\"\<TK_RESERVED\>\"", "]"}]}], ",", 
-           "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{"StringTake", "[", 
-             RowBox[{
-              RowBox[{"token", "[", "\"\<str\>\"", "]"}], ",", "1"}], "]"}], "!=",
-             "op"}]}], "\[IndentingNewLine]", "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"Return", "[", "False", "]"}]}], "\[IndentingNewLine]", 
-        "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
        RowBox[{
-        RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "+=", "1"}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{"Return", "[", "True", "]"}]}]}], "\[IndentingNewLine]", 
-     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"SetAttributes", "[", 
-  RowBox[{"expect", ",", "HoldFirst"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"expect", "[", 
-     RowBox[{"self_", ",", " ", "op_"}], "]"}], ":=", 
-    RowBox[{"Block", "[", 
-     RowBox[{
-      RowBox[{"{", "token", "}"}], ",", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"token", "=", 
-        RowBox[{
-         RowBox[{"self", "[", "\"\<Tokens\>\"", "]"}], "[", 
-         RowBox[{"[", 
-          RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "]"}], "]"}]}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{"If", " ", "[", "\[IndentingNewLine]", 
-        RowBox[{
-         RowBox[{"Or", "[", "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{
-            RowBox[{"token", "[", "\"\<kind\>\"", "]"}], "!=", 
-            RowBox[{"TokenKind", "[", "\"\<TK_RESERVED\>\"", "]"}]}], ",", 
-           "\[IndentingNewLine]", 
-           RowBox[{
-            RowBox[{"StringTake", "[", 
-             RowBox[{
-              RowBox[{"token", "[", "\"\<str\>\"", "]"}], ",", "1"}], "]"}], "!=",
-             "op"}]}], "\[IndentingNewLine]", "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"ParserError", "[", "op", "]"}]}], "\[IndentingNewLine]", 
-        "]"}], ";", "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "+=", "1"}]}]}], 
-     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"SetAttributes", "[", 
-  RowBox[{"expectNumber", ",", "HoldFirst"}], "]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"expectNumber", "[", "self_", "]"}], ":=", 
-    RowBox[{"Block", "[", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"token", ",", "val"}], "}"}], ",", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"token", "=", 
-        RowBox[{
-         RowBox[{"self", "[", "\"\<Tokens\>\"", "]"}], "[", 
-         RowBox[{"[", 
-          RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "]"}], "]"}]}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{"If", " ", "[", "\[IndentingNewLine]", 
+        RowBox[{"Not", "[", 
+         RowBox[{"isAtEnd", "[", "self", "]"}], "]"}], ",", 
+        "\[IndentingNewLine]", 
         RowBox[{
          RowBox[{
-          RowBox[{"token", "[", "\"\<kind\>\"", "]"}], "!=", 
-          RowBox[{"TokenKind", "[", "\"\<TK_NUM\>\"", "]"}]}], ",", 
+          RowBox[{"self", "[", "\"\<Start\>\"", "]"}], "=", 
+          RowBox[{"self", "[", "\"\<Current\>\"", "]"}]}], ";", 
          "\[IndentingNewLine]", 
-         RowBox[{"ParserError", "[", "\"\<number\>\"", "]"}]}], 
-        "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
-       RowBox[{"(*", 
-        RowBox[{
-         RowBox[{"val", "=", 
-          RowBox[{"token", "[", "\"\<val\>\"", "]"}]}], ";"}], "*)"}], 
-       "\[IndentingNewLine]", 
-       RowBox[{"val", "=", 
-        RowBox[{"token", "[", "\"\<str\>\"", "]"}]}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "+=", "1"}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{"Return", "[", "val", "]"}]}]}], "\[IndentingNewLine]", 
-     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-    RowBox[{"ateof", "[", "self_", "]"}], ":=", 
-    RowBox[{"Block", "[", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"token", ",", "val"}], "}"}], ",", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"token", "=", 
-        RowBox[{
-         RowBox[{"self", "[", "\"\<Tokens\>\"", "]"}], "[", 
-         RowBox[{"[", 
-          RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "]"}], "]"}]}], ";", 
-       "\[IndentingNewLine]", 
-       RowBox[{"Return", "[", " ", 
-        RowBox[{
-         RowBox[{"token", "[", "\"\<kind\>\"", "]"}], "==", 
-         RowBox[{"TokenKind", "[", "\"\<TK_EOF\>\"", "]"}]}], "]"}]}]}], 
-     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
- CellChangeTimes->{{3.9832311752748795`*^9, 3.9832312534935455`*^9}},
- CellLabel->
-  "In[234]:=",ExpressionUUID->"d5b30f15-4897-dd4b-86db-5688886ee5a2"],
+         RowBox[{"TokenizerTakeToken", "[", "self", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"TokenizerAddNewToken", "[", 
+       RowBox[{"self", ",", "\"\<TK_EOF\>\""}], "]"}]}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]"}], "Input",
+ CellLabel->"In[1]:=",ExpressionUUID->"138c3ce7-eb30-1542-bacb-50a06cab5fbe"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["parser", "Section",
+ CellChangeTimes->{{3.984564178594576*^9, 
+  3.984564179917202*^9}},ExpressionUUID->"c5df2648-08d9-cf40-9b55-\
+05e383d669e8"],
 
 Cell[BoxData[
  RowBox[{"\[IndentingNewLine]", 
   RowBox[{
    RowBox[{
     RowBox[{
-     RowBox[{"doCodeEmission", "[", "code_", "]"}], ":=", 
+     RowBox[{"Parser", "::", "err"}], "=", "\"\<It is not `1`\>\""}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ParserError", "[", "ch_", "]"}], ":=", 
+     RowBox[{"Block", "[", 
+      RowBox[{
+       RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Message", "[", 
+         RowBox[{
+          RowBox[{"Parser", "::", "err"}], ",", "ch"}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Abort", "[", "]"}]}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Parser", "[", "tokens_", "]"}], ":=", 
+     RowBox[{"Association", "[", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"\"\<Tokens\>\"", "->", "tokens"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"\"\<cur\>\"", " ", "->", "1"}]}], "\[IndentingNewLine]", 
+       "}"}], "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"SetAttributes", "[", 
+    RowBox[{"consume", ",", "HoldFirst"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"consume", "[", 
+      RowBox[{"self_", ",", " ", "op_"}], "]"}], ":=", 
+     RowBox[{"Block", "[", 
+      RowBox[{
+       RowBox[{"{", "token", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"token", "=", 
+         RowBox[{
+          RowBox[{"self", "[", "\"\<Tokens\>\"", "]"}], "[", 
+          RowBox[{"[", 
+           RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", " ", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Or", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"token", "[", "\"\<kind\>\"", "]"}], "!=", 
+             RowBox[{"TokenKind", "[", "\"\<TK_RESERVED\>\"", "]"}]}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"StringTake", "[", 
+              RowBox[{
+               RowBox[{"token", "[", "\"\<str\>\"", "]"}], ",", "1"}], "]"}], 
+             "!=", "op"}]}], "\[IndentingNewLine]", "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Return", "[", "False", "]"}]}], "\[IndentingNewLine]", 
+         "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "+=", "1"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Return", "[", "True", "]"}]}]}], "\[IndentingNewLine]", 
+      "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"SetAttributes", "[", 
+    RowBox[{"expect", ",", "HoldFirst"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"expect", "[", 
+      RowBox[{"self_", ",", " ", "op_"}], "]"}], ":=", 
+     RowBox[{"Block", "[", 
+      RowBox[{
+       RowBox[{"{", "token", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"token", "=", 
+         RowBox[{
+          RowBox[{"self", "[", "\"\<Tokens\>\"", "]"}], "[", 
+          RowBox[{"[", 
+           RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", " ", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Or", "[", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"token", "[", "\"\<kind\>\"", "]"}], "!=", 
+             RowBox[{"TokenKind", "[", "\"\<TK_RESERVED\>\"", "]"}]}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"StringTake", "[", 
+              RowBox[{
+               RowBox[{"token", "[", "\"\<str\>\"", "]"}], ",", "1"}], "]"}], 
+             "!=", "op"}]}], "\[IndentingNewLine]", "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"ParserError", "[", "op", "]"}]}], "\[IndentingNewLine]", 
+         "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "+=", "1"}]}]}], 
+      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"SetAttributes", "[", 
+    RowBox[{"expectNumber", ",", "HoldFirst"}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"expectNumber", "[", "self_", "]"}], ":=", 
      RowBox[{"Block", "[", 
       RowBox[{
        RowBox[{"{", 
-        RowBox[{"asm", ",", "tok", ",", "self"}], "}"}], ",", 
-       "\[IndentingNewLine]", 
+        RowBox[{"token", ",", "val"}], "}"}], ",", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"tok", "=", 
-         RowBox[{"Tokenizer", "[", 
-          RowBox[{"code", "<>", "\"\<\\n\>\""}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"TokenizerTokenize", "[", "tok", "]"}], ";", 
-        "\[IndentingNewLine]", 
-        RowBox[{"self", "=", 
-         RowBox[{"Parser", "[", 
-          RowBox[{"tok", "[", "\"\<Tokens\>\"", "]"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"asm", "=", "\"\<\>\""}], ";", "\[IndentingNewLine]", 
-        RowBox[{"asm", "=", 
-         RowBox[{"asm", "<>", "\"\<.intel_syntax noprefix\\n\>\""}]}], ";", 
-        RowBox[{"asm", "=", 
-         RowBox[{"asm", "<>", "\"\<.globl main\\n\>\""}]}], ";", 
-        RowBox[{"asm", "=", 
-         RowBox[{"asm", "<>", "\"\<main:\\n\>\""}]}], ";", 
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
-        RowBox[{"(*", 
-         RowBox[{"--", 
-          RowBox[{"--", 
-           RowBox[{"--", 
-            RowBox[{"--", 
-             RowBox[{"--", 
-              RowBox[{"--", 
-               RowBox[{"--", 
-                RowBox[{"--", 
-                 RowBox[{"--", "-"}]}]}]}]}]}]}]}]}], "*)"}], 
-        "\[IndentingNewLine]", 
-        RowBox[{"asm", "=", 
-         RowBox[{"asm", "<>", "\"\<\\tmov rax, \>\"", "<>", 
-          RowBox[{"expectNumber", "[", "self", "]"}], "<>", "\"\<\\n\>\""}]}],
-         ";", "\[IndentingNewLine]", 
-        RowBox[{"While", "[", 
+        RowBox[{"token", "=", 
          RowBox[{
-          RowBox[{"Not", "[", 
-           RowBox[{"ateof", "[", "self", "]"}], "]"}], ",", 
-          "\[IndentingNewLine]", 
+          RowBox[{"self", "[", "\"\<Tokens\>\"", "]"}], "[", 
+          RowBox[{"[", 
+           RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", " ", "[", "\[IndentingNewLine]", 
+         RowBox[{
           RowBox[{
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"consume", "[", 
-              RowBox[{"self", ",", "\"\<+\>\""}], "]"}], ",", 
-             "\[IndentingNewLine]", 
-             RowBox[{
-              RowBox[{"asm", "=", 
-               RowBox[{"asm", "<>", "\"\<\\tadd rax, \>\"", "<>", 
-                RowBox[{"expectNumber", "[", "self", "]"}], 
-                "<>", "\"\<\\n\>\""}]}], ";"}]}], "\[IndentingNewLine]", 
-            "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-           RowBox[{"If", "[", 
-            RowBox[{
-             RowBox[{"consume", "[", 
-              RowBox[{"self", ",", "\"\<-\>\""}], "]"}], ",", 
-             "\[IndentingNewLine]", 
-             RowBox[{"asm", "=", 
-              RowBox[{"asm", "<>", "\"\<\\tsub rax, \>\"", "<>", 
-               RowBox[{"expectNumber", "[", "self", "]"}], 
-               "<>", "\"\<\\n\>\""}]}]}], "]"}], ";"}]}], 
+           RowBox[{"token", "[", "\"\<kind\>\"", "]"}], "!=", 
+           RowBox[{"TokenKind", "[", "\"\<TK_NUM\>\"", "]"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"ParserError", "[", "\"\<number\>\"", "]"}]}], 
          "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
-        "\[IndentingNewLine]", "\[IndentingNewLine]", 
         RowBox[{"(*", 
-         RowBox[{"--", 
-          RowBox[{"--", 
-           RowBox[{"--", 
-            RowBox[{"--", 
-             RowBox[{"--", 
-              RowBox[{"--", 
-               RowBox[{"--", 
-                RowBox[{"--", 
-                 RowBox[{"--", 
-                  RowBox[{"--", "--"}]}]}]}]}]}]}]}]}]}], "*)"}], 
+         RowBox[{
+          RowBox[{"val", "=", 
+           RowBox[{"token", "[", "\"\<val\>\"", "]"}]}], ";"}], "*)"}], 
         "\[IndentingNewLine]", 
-        RowBox[{"asm", "=", 
-         RowBox[{"asm", "<>", "\"\<\\tret\\n\>\""}]}], ";", 
+        RowBox[{"val", "=", 
+         RowBox[{"token", "[", "\"\<str\>\"", "]"}]}], ";", 
         "\[IndentingNewLine]", 
-        RowBox[{"Return", "[", "asm", "]"}]}]}], "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "+=", "1"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Return", "[", "val", "]"}]}]}], "\[IndentingNewLine]", 
       "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
-     RowBox[{"WriteToFile", "[", 
-      RowBox[{"code_", ",", "filename_"}], "]"}], ":=", 
+     RowBox[{"ateof", "[", "self_", "]"}], ":=", 
      RowBox[{"Block", "[", 
       RowBox[{
-       RowBox[{"{", "f", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"token", ",", "val"}], "}"}], ",", "\[IndentingNewLine]", 
        RowBox[{
-        RowBox[{"f", "=", 
-         RowBox[{"OpenWrite", "[", 
-          RowBox[{"FileNameJoin", "[", 
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"NotebookDirectory", "[", "]"}], ",", "filename"}], 
-            "}"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-        RowBox[{"WriteString", "[", 
-         RowBox[{"f", ",", 
-          RowBox[{"doCodeEmission", "[", "code", "]"}]}], "]"}], ";", 
+        RowBox[{"token", "=", 
+         RowBox[{
+          RowBox[{"self", "[", "\"\<Tokens\>\"", "]"}], "[", 
+          RowBox[{"[", 
+           RowBox[{"self", "[", "\"\<cur\>\"", "]"}], "]"}], "]"}]}], ";", 
         "\[IndentingNewLine]", 
-        RowBox[{"Close", "[", "f", "]"}], ";"}]}], "\[IndentingNewLine]", 
-      "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"Return", "[", " ", 
+         RowBox[{
+          RowBox[{"token", "[", "\"\<kind\>\"", "]"}], "==", 
+          RowBox[{"TokenKind", "[", "\"\<TK_EOF\>\"", "]"}]}], "]"}]}]}], 
+      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"Test", "[", "code_", "]"}], ":=", 
-    RowBox[{"Block", "[", 
-     RowBox[{
-      RowBox[{"{", 
-       RowBox[{"compileASM", ",", "Test"}], "}"}], ",", "\[IndentingNewLine]",
-       "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"ParseNum", "[", "num_", "]"}], ":=", 
+     RowBox[{"NodeNum", "[", "num", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetAttributes", "[", 
+     RowBox[{"ParsePrimary", ",", "HoldFirst"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ParsePrimary", "[", "self_", "]"}], ":=", 
+     RowBox[{"Block", "[", 
       RowBox[{
-       RowBox[{"WriteToFile", "[", 
-        RowBox[{"code", ",", "\"\<main.s\>\""}], "]"}], ";", 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"compileASM", "=", 
-        RowBox[{"RunProcess", "[", 
-         RowBox[{"{", "\[IndentingNewLine]", 
-          RowBox[{"\"\<gcc\>\"", ",", "\[IndentingNewLine]", 
-           RowBox[{"FileNameJoin", "[", 
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{"NotebookDirectory", "[", "]"}], 
-              ",", "\"\<main.s\>\""}], "}"}], "]"}], ",", 
-           "\[IndentingNewLine]", "\"\<-o\>\"", ",", 
-           RowBox[{"FileNameJoin", "[", 
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<main\>\""}], 
-             "}"}], "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], ";", 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"If", "[", 
-        RowBox[{
+       RowBox[{"{", "node", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"If", " ", "[", 
          RowBox[{
-          RowBox[{"compileASM", "[", "\"\<ExitCode\>\"", "]"}], "!=", "0"}], ",",
-          "\[IndentingNewLine]", 
-         RowBox[{
-          RowBox[{"Print", "[", 
-           RowBox[{"compileASM", "[", "\"\<StandardError\>\"", "]"}], "]"}], ";", 
-          RowBox[{"Abort", "[", "]"}]}]}], "\[IndentingNewLine]", "]"}], ";", 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"Test", "=", 
-        RowBox[{"RunProcess", "[", 
-         RowBox[{"{", "\[IndentingNewLine]", 
-          RowBox[{"FileNameJoin", "[", 
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"NotebookDirectory", "[", "]"}], 
-             ",", "\"\<main.exe\>\""}], "}"}], "]"}], "\[IndentingNewLine]", 
-          "}"}], "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"If", "[", 
-        RowBox[{
-         RowBox[{
-          RowBox[{"Test", "[", "\"\<ExitCode\>\"", "]"}], "!=", 
-          RowBox[{"ToExpression", "[", "code", "]"}]}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"Print", "[", 
-          RowBox[{"Test", "[", "\"\<StandardError\>\"", "]"}], "]"}], ",", 
-         "\[IndentingNewLine]", 
-         RowBox[{"Print", "[", 
-          RowBox[{"\"\<Test Pass Sucess with :\>\"", ",", 
-           RowBox[{"Test", "[", "\"\<ExitCode\>\"", "]"}]}], "]"}]}], 
-        "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], ";", 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", 
-       RowBox[{"DeleteFile", "[", "\[IndentingNewLine]", 
-        RowBox[{"FileNameJoin", "[", 
-         RowBox[{"{", 
+          RowBox[{"consume", "[", 
+           RowBox[{"self", ",", "\"\<(\>\""}], "]"}], ",", 
+          "\[IndentingNewLine]", " ", 
           RowBox[{
-           RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<main.exe\>\""}],
-           "}"}], "]"}], "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
-   "\[IndentingNewLine]"}]}]], "Input",
+           RowBox[{"node", "=", 
+            RowBox[{"ParseExpr", "[", "self", "]"}]}], ";", 
+           RowBox[{"(*", "recurcive", "*)"}], "\[IndentingNewLine]", 
+           RowBox[{"expect", "[", 
+            RowBox[{"self", ",", "\"\<)\>\""}], "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"Return", "[", " ", "node", "]"}]}]}], 
+         "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Return", " ", "[", 
+         RowBox[{"ParseNum", "[", 
+          RowBox[{"expectNumber", "[", "self", "]"}], "]"}], "]"}], ";"}]}], 
+      "\n", "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetAttributes", "[", 
+     RowBox[{"ParseMul", ",", "HoldFirst"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ParseMul", "[", "self_", "]"}], ":=", 
+     RowBox[{"Block", "[", 
+      RowBox[{
+       RowBox[{"{", "node", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"node", "=", 
+         RowBox[{"ParsePrimary", "[", "self", "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"While", "[", 
+         RowBox[{"True", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"consume", "[", 
+             RowBox[{"self", ",", "\"\<*\>\""}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"node", "=", 
+             RowBox[{"Node", "[", 
+              RowBox[{"\"\<ND_MUL\>\"", ",", "node", ",", 
+               RowBox[{"ParsePrimary", "[", "self", "]"}]}], "]"}]}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"consume", "[", 
+               RowBox[{"self", ",", "\"\</\>\""}], "]"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"node", "=", 
+               RowBox[{"Node", "[", 
+                RowBox[{"\"\<ND_DIV\>\"", ",", "node", ",", 
+                 RowBox[{"ParsePrimary", "[", "self", "]"}]}], "]"}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Return", "[", "node", "]"}]}], "]"}]}], 
+           "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}]}], 
+      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SetAttributes", "[", 
+     RowBox[{"ParseExpr", ",", "HoldFirst"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ParseExpr", "[", "self_", "]"}], ":=", 
+     RowBox[{"Block", "[", 
+      RowBox[{
+       RowBox[{"{", "node", "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"node", "=", 
+         RowBox[{"ParseMul", "[", "self", "]"}]}], ";", "\[IndentingNewLine]",
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"While", "[", 
+         RowBox[{"True", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"consume", "[", 
+             RowBox[{"self", ",", "\"\<+\>\""}], "]"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"node", "=", 
+             RowBox[{"Node", "[", 
+              RowBox[{"\"\<ND_ADD\>\"", ",", "node", ",", 
+               RowBox[{"ParseMul", "[", "self", "]"}]}], "]"}]}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"consume", "[", 
+               RowBox[{"self", ",", "\"\<-\>\""}], "]"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"node", "=", 
+               RowBox[{"Node", "[", 
+                RowBox[{"\"\<ND_SUB\>\"", ",", "node", ",", 
+                 RowBox[{"ParseMul", "[", "self", "]"}]}], "]"}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{"Return", "[", "node", "]"}]}], "]"}]}], 
+           "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}]}], 
+      "\[IndentingNewLine]", "]"}]}], ";"}]}]}]], "Input",
  CellChangeTimes->{{3.983076431769062*^9, 3.983076448291477*^9}, {
    3.9830765219280987`*^9, 3.9830765248159847`*^9}, {3.98307678998814*^9, 
    3.983076824322901*^9}, {3.9830783957555065`*^9, 3.9830784105687466`*^9}, 
    3.983230752223385*^9, {3.9832308367398376`*^9, 3.98323097456266*^9}, {
    3.9832310262138996`*^9, 3.983231103544199*^9}, {3.9832312911043167`*^9, 
-   3.9832312923900204`*^9}, {3.9832313368333225`*^9, 3.9832313417295628`*^9}},
- CellLabel->
-  "In[271]:=",ExpressionUUID->"d0e10145-abee-d84a-bf0e-a500d0bafde9"],
+   3.9832312923900204`*^9}, {3.9832313368333225`*^9, 
+   3.9832313417295628`*^9}, {3.984564206654619*^9, 3.98456420755929*^9}},
+ CellLabel->"In[22]:=",ExpressionUUID->"d0e10145-abee-d84a-bf0e-a500d0bafde9"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["node", "Section",
+ CellChangeTimes->{{3.9845643325179977`*^9, 
+  3.9845643333023796`*^9}},ExpressionUUID->"73ad8f02-3f52-e544-82bf-\
+3270d24d1493"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"NodeKindList", "=", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{"\"\<ND_ADD\>\"", ",", "\[IndentingNewLine]", "\"\<ND_SUB\>\"", ",",
+       "\[IndentingNewLine]", "\"\<ND_MUL\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<ND_DIV\>\"", ",", 
+      "\[IndentingNewLine]", "\"\<ND_NUM\>\""}], "\[IndentingNewLine]", 
+     "}"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NodeKind", "=", 
+    RowBox[{"Association", "[", 
+     RowBox[{"Thread", "[", 
+      RowBox[{"NodeKindList", "->", 
+       RowBox[{"Range", "[", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          RowBox[{"Length", "[", "NodeKindList", "]"}], "-", "1"}]}], "]"}]}],
+       "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NodeKindString", "=", 
+    RowBox[{"Association", "[", 
+     RowBox[{"Thread", "[", 
+      RowBox[{
+       RowBox[{"Range", "[", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          RowBox[{"Length", "[", "NodeKindList", "]"}], "-", "1"}]}], "]"}], "->",
+        "NodeKindList"}], "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Node", "[", 
+     RowBox[{"kind_", ",", "lhs_", ",", "rhs_"}], "]"}], ":=", 
+    RowBox[{"Association", "[", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"\"\<kind\>\"", "->", 
+        RowBox[{"NodeKind", "[", "kind", "]"}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{"\"\<lhs\>\"", "->", "lhs"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"\"\<rhs\>\"", "->", "rhs"}]}], "\[IndentingNewLine]", "}"}], 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"NodeNum", "[", "val_", "]"}], ":=", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"\"\<kind\>\"", "->", 
+       RowBox[{"NodeKind", "[", "\"\<ND_NUM\>\"", "]"}]}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"\"\<val\>\"", "->", "val"}]}], "\[IndentingNewLine]", "}"}], 
+    "]"}]}], ";"}]}], "Input",
+ CellLabel->"In[39]:=",ExpressionUUID->"391aadb0-1342-1b48-8b69-11da0d4a555a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["codeEmision", "Section",
+ CellChangeTimes->{
+  3.984564227445875*^9},ExpressionUUID->"8bd785d6-99af-ae42-9149-\
+1183756b9726"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"doCodeEmission", "[", "code_", "]"}], ":=", 
+    RowBox[{"Block", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"asm", "=", "\"\<\>\""}], ",", "tok", ",", "self", ",", "gen",
+         ",", "node"}], "}"}], ",", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"gen", "[", "nnode_", "]"}], ":=", 
+        RowBox[{"Block", "[", 
+         RowBox[{
+          RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"nnode", "[", "\"\<kind\>\"", "]"}], "==", 
+              RowBox[{"NodeKind", "[", "\"\<ND_NUM\>\"", "]"}]}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"asm", "=", 
+               RowBox[{"asm", "<>", "\"\<\\tpush \>\"", "<>", 
+                RowBox[{"nnode", "[", "\"\<val\>\"", "]"}], "<>", 
+                " ", "\"\<\\n\>\""}]}], ";", "\[IndentingNewLine]", 
+              RowBox[{"Return", "[", "asm", "]"}]}]}], "\[IndentingNewLine]", 
+            "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"gen", "[", 
+            RowBox[{"nnode", "[", "\"\<lhs\>\"", "]"}], "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"gen", "[", 
+            RowBox[{"nnode", "[", "\"\<rhs\>\"", "]"}], "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"asm", "=", 
+            RowBox[{"asm", "<>", "\"\<\\tpop rdi\\n\>\""}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"asm", "=", 
+            RowBox[{"asm", "<>", "\"\<\\tpop rax\\n\>\""}]}], ";", 
+           "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"Switch", "[", 
+            RowBox[{
+             RowBox[{"nnode", "[", "\"\<kind\>\"", "]"}], ",", 
+             "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"NodeKind", "[", "\"\<ND_ADD\>\"", "]"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"asm", "=", 
+              RowBox[{"asm", "<>", "\"\<\\tadd rax, rdi\\n\>\""}]}], ",", 
+             "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             "\[IndentingNewLine]", 
+             RowBox[{"NodeKind", "[", "\"\<ND_SUB\>\"", "]"}], ",", 
+             RowBox[{"asm", "=", 
+              RowBox[{"asm", "<>", "\"\<\\tsub rax, rdi\\n\>\""}]}], ",", 
+             "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             "\[IndentingNewLine]", 
+             RowBox[{"NodeKind", "[", "\"\<ND_MUL\>\"", "]"}], ",", 
+             RowBox[{"asm", "=", 
+              RowBox[{"asm", "<>", "\"\<\\timul rax, rdi\\n\>\""}]}], ",", 
+             "\[IndentingNewLine]", "\[IndentingNewLine]", 
+             RowBox[{"NodeKind", "[", "\"\<ND_DIV\>\"", "]"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"asm", "=", 
+               RowBox[{"asm", "<>", "\"\<\\tcqo\\n\>\""}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"asm", "=", 
+               RowBox[{"asm", "<>", "\"\<\\tidiv rdi\\n\>\""}]}], ";"}]}], 
+            "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], ";", 
+           "\[IndentingNewLine]", "\[IndentingNewLine]", 
+           RowBox[{"Return", "[", 
+            RowBox[{"asm", "=", 
+             RowBox[{"asm", "<>", "\"\<\\tpush rax\\n\>\""}]}], "]"}]}]}], 
+         "\[IndentingNewLine]", "]"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"tok", "=", 
+        RowBox[{"Tokenizer", "[", 
+         RowBox[{"code", "<>", "\"\<\\n\>\""}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"TokenizerTokenize", "[", "tok", "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"self", "=", 
+        RowBox[{"Parser", "[", 
+         RowBox[{"tok", "[", "\"\<Tokens\>\"", "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"asm", "=", "\"\<\>\""}], ";", "\[IndentingNewLine]", 
+       RowBox[{"asm", "=", 
+        RowBox[{"asm", "<>", "\"\<.intel_syntax noprefix\\n\>\""}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"asm", "=", 
+        RowBox[{"asm", "<>", "\"\<.globl main\\n\>\""}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"asm", "=", 
+        RowBox[{"asm", "<>", "\"\<main:\\n\>\""}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", 
+              RowBox[{"--", 
+               RowBox[{"--", 
+                RowBox[{"--", "-"}]}]}]}]}]}]}]}]}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"node", "=", 
+        RowBox[{"ParseExpr", "[", "self", "]"}]}], ";", "\[IndentingNewLine]",
+        "\[IndentingNewLine]", 
+       RowBox[{"gen", "[", "node", "]"}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"--", 
+         RowBox[{"--", 
+          RowBox[{"--", 
+           RowBox[{"--", 
+            RowBox[{"--", 
+             RowBox[{"--", 
+              RowBox[{"--", 
+               RowBox[{"--", 
+                RowBox[{"--", 
+                 RowBox[{"--", "--"}]}]}]}]}]}]}]}]}]}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"asm", "=", 
+        RowBox[{"asm", "<>", "\"\<\\tpop rax\\n\>\""}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"asm", "=", 
+        RowBox[{"asm", "<>", "\"\<\\tret\\n\>\""}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Return", "[", "asm", "]"}]}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"WriteToFile", "[", 
+    RowBox[{"code_", ",", "filename_"}], "]"}], ":=", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", "f", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"f", "=", 
+       RowBox[{"OpenWrite", "[", 
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"NotebookDirectory", "[", "]"}], ",", "filename"}], "}"}], 
+         "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"WriteString", "[", 
+       RowBox[{"f", ",", 
+        RowBox[{"doCodeEmission", "[", "code", "]"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Close", "[", "f", "]"}], ";"}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]}], "Input",
+ CellLabel->"In[44]:=",ExpressionUUID->"4d4fa171-2a82-1f4f-84be-20872da83d9f"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["compile", "Section",
+ CellChangeTimes->{{3.984564269195772*^9, 
+  3.984564271328556*^9}},ExpressionUUID->"320c271a-ddf5-a644-b987-\
+0254569a08f8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Test", "[", 
+   RowBox[{"code_", ",", 
+    RowBox[{"filename_", ":", "\"\<main\>\""}], ",", 
+    RowBox[{"clean_", ":", "True"}]}], "]"}], ":=", 
+  RowBox[{"Block", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"compileASM", ",", "Test"}], "}"}], ",", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"WriteToFile", "[", 
+      RowBox[{"code", ",", 
+       RowBox[{"filename", "<>", "\"\<.s\>\""}]}], "]"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"compileASM", "=", 
+      RowBox[{"RunProcess", "[", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{"\"\<gcc\>\"", ",", "\[IndentingNewLine]", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+            RowBox[{"filename", "<>", "\"\<.s\>\""}]}], "}"}], "]"}], ",", 
+         "\[IndentingNewLine]", "\"\<-o\>\"", ",", 
+         RowBox[{"FileNameJoin", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"NotebookDirectory", "[", "]"}], ",", "filename"}], "}"}],
+           "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"compileASM", "[", "\"\<ExitCode\>\"", "]"}], "!=", "0"}], ",",
+        "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Print", "[", 
+         RowBox[{"compileASM", "[", "\"\<StandardError\>\"", "]"}], "]"}], ";", 
+        RowBox[{"Abort", "[", "]"}]}]}], "\[IndentingNewLine]", "]"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"Test", "=", 
+      RowBox[{"RunProcess", "[", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+           RowBox[{"filename", "<>", "\"\<.exe\>\""}]}], "}"}], "]"}], 
+        "\[IndentingNewLine]", "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Test", "[", "\"\<ExitCode\>\"", "]"}], "!=", 
+        RowBox[{"ToExpression", "[", "code", "]"}]}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"Test", "[", "\"\<StandardError\>\"", "]"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<Test Pass Sucess with :\>\"", ",", 
+         RowBox[{"Test", "[", "\"\<ExitCode\>\"", "]"}]}], "]"}]}], 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{"clean", ",", "\[IndentingNewLine]", 
+       RowBox[{"DeleteFile", "[", "\[IndentingNewLine]", 
+        RowBox[{"FileNameJoin", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+           RowBox[{"filename", "<>", "\"\<.exe\>\""}]}], "}"}], "]"}], 
+        "]"}]}], "\[IndentingNewLine]", "]"}]}]}], "]"}]}]], "Input",
+ CellLabel->"In[46]:=",ExpressionUUID->"6bd0d711-22f2-6b48-9b40-0cfdf205c1c2"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["test", "Section",
+ CellChangeTimes->{{3.9845642478136044`*^9, 
+  3.9845642522771206`*^9}},ExpressionUUID->"232d439c-8c6c-2d4e-ba45-\
+70eae1492059"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Test", "[", "\"\<5+6*7\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Test", "[", "\"\<5*(9-6)\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Test", "[", "\"\<(3+5)/2\>\"", "]"}]}], "Input",
+ CellChangeTimes->{3.983231687349098*^9, 3.984564291493431*^9},
+ CellLabel->"In[47]:=",ExpressionUUID->"cd71874a-888d-0c40-aeed-2d3802300ff1"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"Test", "[", "\"\<12 + 34 - 5\>\"", "]"}]], "Input",
- CellChangeTimes->{3.983231687349098*^9},
+ InterpretationBox[
+  RowBox[{"\<\"Test Pass Sucess with :\"\>", "\[InvisibleSpace]", "47"}],
+  SequenceForm["Test Pass Sucess with :", 47],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.9845643519108467`*^9, 3.984564362789276*^9}},
  CellLabel->
-  "In[276]:=",ExpressionUUID->"cd71874a-888d-0c40-aeed-2d3802300ff1"],
+  "During evaluation of \
+In[47]:=",ExpressionUUID->"ce64d1d9-ceec-d44f-8fb7-a6ff7c9d1cce"],
 
 Cell[BoxData[
  InterpretationBox[
-  RowBox[{"\<\"Test Pass Sucess with :\"\>", "\[InvisibleSpace]", "41"}],
-  SequenceForm["Test Pass Sucess with :", 41],
+  RowBox[{"\<\"Test Pass Sucess with :\"\>", "\[InvisibleSpace]", "15"}],
+  SequenceForm["Test Pass Sucess with :", 15],
   Editable->False]], "Print",
- CellChangeTimes->{
-  3.9830768917764263`*^9, {3.983231351201933*^9, 3.983231355558943*^9}, 
-   3.983231688249178*^9},
+ CellChangeTimes->{{3.9845643519108467`*^9, 3.9845643630757656`*^9}},
  CellLabel->
   "During evaluation of \
-In[276]:=",ExpressionUUID->"f6b38aa6-8570-ac4f-9907-0061034e14d1"]
+In[47]:=",ExpressionUUID->"0054c58f-7069-d741-94dc-ceedaf815dd1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Test Pass Sucess with :\"\>", "\[InvisibleSpace]", "4"}],
+  SequenceForm["Test Pass Sucess with :", 4],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.9845643519108467`*^9, 3.9845643633852806`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[47]:=",ExpressionUUID->"6eea0ff8-dc8b-854b-b09b-5cf57ceaf8c0"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{571.5, 450.75},
-WindowMargins->{{Automatic, 144}, {28.5, Automatic}},
+WindowSize->{510.75, 537},
+WindowMargins->{{-5.25, Automatic}, {Automatic, 0}},
 FrontEndVersion->"14.2 for Microsoft Windows (64-bit) (March 14, 2025)",
 StyleDefinitions->"Default.nb",
 ExpressionUUID->"56fa71c5-6708-ea44-bbba-4863e9380267"
@@ -749,11 +1035,33 @@ Cell[CellGroupData[{
 Cell[576, 22, 708, 14, 52, "Subtitle",ExpressionUUID->"61b0b2ff-bb74-a943-bf90-2453bcb23e37"],
 Cell[CellGroupData[{
 Cell[1309, 40, 154, 3, 66, "Section",ExpressionUUID->"811ad13c-25de-d345-b029-77c6ef1989d4"],
-Cell[1466, 45, 19464, 473, 3947, "Input",ExpressionUUID->"d5b30f15-4897-dd4b-86db-5688886ee5a2"],
-Cell[20933, 520, 7925, 185, 1207, "Input",ExpressionUUID->"d0e10145-abee-d84a-bf0e-a500d0bafde9"],
+Cell[1466, 45, 13319, 312, 2882, "Input",ExpressionUUID->"138c3ce7-eb30-1542-bacb-50a06cab5fbe"]
+}, Closed]],
 Cell[CellGroupData[{
-Cell[28883, 709, 200, 4, 28, "Input",ExpressionUUID->"cd71874a-888d-0c40-aeed-2d3802300ff1"],
-Cell[29086, 715, 409, 10, 22, "Print",ExpressionUUID->"f6b38aa6-8570-ac4f-9907-0061034e14d1"]
+Cell[14822, 362, 151, 3, 52, "Section",ExpressionUUID->"c5df2648-08d9-cf40-9b55-05e383d669e8"],
+Cell[14976, 367, 11859, 275, 1968, "Input",ExpressionUUID->"d0e10145-abee-d84a-bf0e-a500d0bafde9"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[26872, 647, 153, 3, 52, "Section",ExpressionUUID->"73ad8f02-3f52-e544-82bf-3270d24d1493"],
+Cell[27028, 652, 2315, 58, 599, "Input",ExpressionUUID->"391aadb0-1342-1b48-8b69-11da0d4a555a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29380, 715, 132, 3, 66, "Section",ExpressionUUID->"8bd785d6-99af-ae42-9149-1183756b9726"],
+Cell[29515, 720, 6739, 156, 1303, "Input",ExpressionUUID->"4d4fa171-2a82-1f4f-84be-20872da83d9f"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[36291, 881, 152, 3, 52, "Section",ExpressionUUID->"320c271a-ddf5-a644-b987-0254569a08f8"],
+Cell[36446, 886, 3186, 75, 637, "Input",ExpressionUUID->"6bd0d711-22f2-6b48-9b40-0cfdf205c1c2"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[39669, 966, 153, 3, 52, "Section",ExpressionUUID->"232d439c-8c6c-2d4e-ba45-70eae1492059"],
+Cell[CellGroupData[{
+Cell[39847, 973, 358, 5, 66, "Input",ExpressionUUID->"cd71874a-888d-0c40-aeed-2d3802300ff1"],
+Cell[CellGroupData[{
+Cell[40230, 982, 357, 8, 22, "Print",ExpressionUUID->"ce64d1d9-ceec-d44f-8fb7-a6ff7c9d1cce"],
+Cell[40590, 992, 359, 8, 22, "Print",ExpressionUUID->"0054c58f-7069-d741-94dc-ceedaf815dd1"],
+Cell[40952, 1002, 357, 8, 22, "Print",ExpressionUUID->"6eea0ff8-dc8b-854b-b09b-5cf57ceaf8c0"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
